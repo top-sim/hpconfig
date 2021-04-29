@@ -13,14 +13,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+
+"""
+hpconfig is a generator for hardware configuration files based on existing
+and theoretical high-performance computing facilities. Its intended use is to
+be used in the development of
+
+hpconfig may be used as a command-line interface, or as an 'API' (single
+class) that may be imported into a
+
+"""
+
+
+import sys
 import argparse
-import json
-import time
 
-from specs.pawsey import galaxy
-from specs.sdp import sdp
-
-
+from hpconfig.specs.pawsey import galaxy
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -59,6 +67,7 @@ if __name__ == '__main__':
     else:
         print("Please specify an environment using --environment ")
         parser.print_help()
+        sys.exit()
 
     if args.list_defaults:
         curr_env.print_default_config()
@@ -71,7 +80,7 @@ if __name__ == '__main__':
                 print(default_str)
                 print(f'New Configuration')
                 print(curr_env.print_config())
-                curr_env.to_json()
+                curr_env.to_json
             else:
                 print("Incorrect number of values passed as arguments")
     else:

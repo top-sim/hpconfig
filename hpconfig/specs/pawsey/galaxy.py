@@ -14,16 +14,17 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 """
-Contains the specifications and details for the hardware used in Pawsey's "Galaxy"
-HPC facility. 
+Contains the specifications and details for the hardware used in Pawsey's
+"Galaxy" HPC facility.
 https://www.microway.com/knowledge-center-articles/detailed-specifications-intel-xeon-e5-2600v3-haswell-ep-processors/
 Based on the above link, the Galaxy Ivy Bridge has 8FLOPs/Cycle
 """
+
 import json
 import time
 
-from utils.constants import SI
-from utils.classes import CPU_NODE, GPU_NODE
+from hpconfig.utils.constants import SI
+from hpconfig.utils.classes import CPU_NODE, GPU_NODE
 
 
 class PawseyGalaxy:
@@ -161,6 +162,7 @@ class PawseyGalaxy:
         name = f'{str(self)}_nd_{timestamp}.json'
         with open(name, 'w+') as jfile:
             json.dump(jdict, jfile, indent=4)
+        return name
 
     def __str__(self):
         return self.name
